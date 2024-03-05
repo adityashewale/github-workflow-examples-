@@ -6,7 +6,11 @@ env:
   KEYNAME: ${{ vars.GPGKEYNAME }}
 
 on:
-  workflow_dispatch: 
+  workflow_dispatch:
+    inputs:
+      stress-test:
+        description: 'Stress test configuration'
+        required: true
 
 jobs:
   build:
