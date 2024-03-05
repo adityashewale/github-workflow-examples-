@@ -9,7 +9,8 @@ on:
   workflow_dispatch:
     inputs:
       name:
-        description: Stress test
+        type: choice
+        description: Stress Test Run
         options:
         - stress-Test
 
