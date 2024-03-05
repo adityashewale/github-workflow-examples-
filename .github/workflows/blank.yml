@@ -6,12 +6,11 @@ env:
   KEYNAME: ${{ secrets.KEYNAME }}
 
 on:
-  pull_request:
   workflow_dispatch:
     inputs:
       name:
         type: choice
-        description:
+        description: Stress test
         options:
         - stress-Test
 
