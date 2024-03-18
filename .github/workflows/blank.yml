@@ -6,11 +6,11 @@ on:
       imageName:
         description: 'Name of the Docker image (including the repository name if pushing to DockerHub or another registry)'
         required: true
-        default: 'yourusername/myapp:latest' # Example default image name, replace with your own default
+        
       baseImage:
         description: 'Base Docker image to use'
         required: true
-        default: 'node:14' # Example default base image, replace with your desired base image
+        
 
 jobs:
   build_and_push:
