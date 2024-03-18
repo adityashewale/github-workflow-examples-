@@ -23,13 +23,7 @@ jobs:
       -
         name: Build and push
         run: |
-           echo ${{ secrets.DOCKER_TOKEN }}
-      -
-        name: Login to DockerHub
-        uses: docker/login-action@v3
-        with:
-          username: aditya5900
-          password: ${{ secrets.DOCKER_TOKEN }}
+           docker login -u aditya5900 -p  ${{ secrets.DOCKER_TOKEN }}
              
       - 
         name: Build and push
