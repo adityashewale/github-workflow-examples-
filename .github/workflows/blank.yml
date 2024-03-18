@@ -30,6 +30,7 @@ jobs:
         with:
           username: ${{ env.DOCKERHUB_USERNAME }}
           password: ${{ env.DOCKERHUB_TOKEN }}
+          logout: true
           
       - 
         name: Build and push
