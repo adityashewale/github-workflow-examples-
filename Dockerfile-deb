@@ -1,0 +1,40 @@
+ARG BASE_IMAGE
+
+# Set DEBIAN_FRONTEND to noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Use the specified base image
+FROM $BASE_IMAGE
+
+# Update package lists
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        linux-image-generic \
+        linux-headers-generic \
+        build-essential \
+        autoconf \
+        automake \
+        pkg-config \
+        devscripts \
+        debhelper \
+        libtool \
+        libattr1-dev \
+        xfslibs-dev \
+        lsb-release \
+        kmod \
+        librdmacm-dev \
+        libibverbs-dev \
+        default-jdk \
+        ant \
+        zlib1g-dev \
+        libssl-dev \
+        libcurl4-openssl-dev \
+        libblkid-dev \
+        uuid-dev \
+        libnl-3-200 \
+        libnl-3-dev \
+        libnl-genl-3-200 \
+        libnl-route-3-200 \
+        libnl-route-3-dev && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
