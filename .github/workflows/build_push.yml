@@ -49,6 +49,6 @@ jobs:
           password: ${{ secrets.DOCKER_TOKEN }}
       - name: Build and push
         run: |
-          docker build -f Dockerfile-deb -t aditya5900/${{ github.event.inputs.imageName }} \
+          docker build -f Dockerfile-deb -t ${{ github.event.inputs.imageName }} \
                        --build-arg BASE_IMAGE=${{ github.event.inputs.baseImage }} .
           docker push ${{ github.event.inputs.imageName }}
