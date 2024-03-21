@@ -1,0 +1,31 @@
+ARG BASE_IMAGE
+
+FROM $BASE_IMAGE
+
+# Install required dependencies
+RUN yum install -y \
+    libuuid-devel \
+    libibverbs-devel \
+    librdmacm-devel \
+    libattr-devel \
+    redhat-rpm-config \
+    rpm-build \
+    xfsprogs-devel \
+    libcurl-devel \
+    elfutils-libelf-devel \
+    kernel-devel \
+    libblkid-devel \
+    libnl3-devel \
+    gcc \
+    gcc-c++ \
+    git \
+    make \
+    cmake \
+    ant \
+    java-devel \
+    unzip \
+    redhat-lsb-core \
+    && \
+    yum group install "Development Tools" -y && \
+    yum clean all
+
