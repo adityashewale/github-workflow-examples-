@@ -3,33 +3,52 @@ name: Build and Push Docker Image
 on:
   workflow_dispatch:
     inputs:
+      name:
+        type: choice
+        description: 'Select the package type to build (RPM or DEB)'
+        options:
+          - RPM
+          - DEB
       imageName:
-        description: 'Name of the Docker image (including the repository name if pushing to DockerHub or another registry)'
+        description: 'Name of the Docker image which will be created from base image '
         required: true
-        
       baseImage:
         description: 'Base Docker image to use'
         required: true
-        
 
 jobs:
-  build_and_push:
-    runs-on: self-hosted
-
+  RPM-based-docker-image:
+    name: RPM based image
+    runs-on: [self-hosted, X64]
+    if: ${{ github.event.inputs.name == 'RPM' }}
     steps:
-      -
-        name: Checkout
+      - name: Checkout
         uses: actions/checkout@v2
-      -
-        name: Login to DockerHub
+      - name: Login to DockerHub
         uses: docker/login-action@v3
         with:
           username: aditya5900
           password: ${{ secrets.DOCKER_TOKEN }}
-      - 
-        name: Build and push
+      - name: Build and push
         run: |
-           docker build -t ${{ github.event.inputs.imageName }} \
-                     --build-arg BASE_IMAGE=${{ github.event.inputs.baseImage }} \
-                     .
-            docker push ${{ github.event.inputs.imageName }}
+          docker build -f Dockerfile-rpm -t ${{ github.event.inputs.imageName }} \
+                       --build-arg BASE_IMAGE=${{ github.event.inputs.baseImage }} .
+          docker push ${{ github.event.inputs.imageName }}
+
+  DEB-based-docker-image:
+    name: Debian based image
+    runs-on: [self-hosted, X64]
+    if: ${{ github.event.inputs.name == 'DEB' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Login to DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: aditya5900
+          password: ${{ secrets.DOCKER_TOKEN }}
+      - name: Build and push
+        run: |
+          docker build -f Dockerfile-deb -t ${{ github.event.inputs.imageName }} \
+                       --build-arg BASE_IMAGE=${{ github.event.inputs.baseImage }} .
+          docker push ${{ github.event.inputs.imageName }}
