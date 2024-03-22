@@ -23,7 +23,7 @@ jobs:
     if: ${{ github.event.inputs.name == 'RPM' }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Login to DockerHub
         uses: docker/login-action@v3
         with:
@@ -41,7 +41,7 @@ jobs:
     if: ${{ github.event.inputs.name == 'DEB' }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Login to DockerHub
         uses: docker/login-action@v3
         with:
