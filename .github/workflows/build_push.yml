@@ -33,7 +33,7 @@ jobs:
         run: |
           docker build -f Dockerfile-rpm -t aditya5900/${{ github.event.inputs.imageName }} \
                        --build-arg BASE_IMAGE=${{ github.event.inputs.baseImage }} .
-          docker push ${{ github.event.inputs.imageName }}
+          docker push aditya5900/${{ github.event.inputs.imageName }}
 
   DEB-based-docker-image:
     name: Debian based image
