@@ -23,6 +23,6 @@ jobs:
         run: echo "Hello" >> greetings.txt
       - name: Record Time Step
         runs:
-          using: docker
-          image: Dockerfile
+          using: 'docker'
+          image: 'Dockerfile'
          
