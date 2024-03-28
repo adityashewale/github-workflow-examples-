@@ -1,16 +1,32 @@
 name: 'Hello World'
-description: 'Greet someone and record the time'
-inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
-    required: true
-    default: 'World'
-outputs:
-  time: # id of output
-    description: 'The time we greeted you'
-runs:
-  using: 'docker'
-  image: 'Dockerfile' # Specify the Docker image name, not Dockerfile
-  args:
-    - ${{ inputs.who-to-greet }}
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        type: choice
+        description: 'Select the package type to build (RPM or DEB)'
+        options:
+          - DEB
+      imageName:
+        description: 'Name of the Docker image which will be created from base image'
+        required: true
+      baseImage:
+        description: 'Base Docker image to use'
+        required: true
 
+jobs:
+  build:
+    name: 'Build Package'
+    runs-on: [self-hosted, X64]
+    if: ${{ github.event.inputs.name == 'RPM' }}
+    description: 'Builds a package and greets someone'
+    steps:
+      - name: Greeting Step
+        uses: actions/hello-world-action@v1
+        with:
+          who-to-greet: ${{ github.event.inputs.who-to-greet }}
+      - name: Record Time Step
+        run: echo "The time we greeted you: $(date)" >> greeting.txt
+        continue-on-error: true
+      - name: Build Docker Image
+        run: docker build -t ${{ github.event.inputs.imageName }} --build-arg BASE_IMAGE=${{ github.event.inputs.baseImage }} .
