@@ -18,7 +18,7 @@ jobs:
   build:
     name: 'Build Package'
     runs-on: [self-hosted, X64]
-    if: ${{ github.event.inputs.name == 'RPM' }}
+    if: ${{ github.event.inputs.name == 'DEB' }}
     steps:
       - name: Greeting Step
         uses: actions/hello-world-action@v1
