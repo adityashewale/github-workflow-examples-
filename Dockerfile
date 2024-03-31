@@ -1,5 +1,11 @@
+ARG BASE_IMAGE
+
+
+# Use the specified base image
+FROM $BASE_IMAGE
+
 # Container image that runs your code
-FROM ubuntu
+#FROM ubuntu
 
 # Copies your code file from your action repository to the filesystem path `/` of the container
 COPY entrypoint.sh /entrypoint.sh
