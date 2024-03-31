@@ -14,4 +14,5 @@ runs:
   image: 'Dockerfile'
   args:
     - ${{ inputs.who-to-greet }}
-  env: 'BASE_IMAGE=ubuntu'
+  env:
+   BASE_IMAGE: 'ubuntu'
