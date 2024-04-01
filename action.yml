@@ -11,7 +11,7 @@ outputs:
     description: 'The time we greeted you'
 runs:
   using: 'docker'
-  image: 'Dockerfile'
+  image: 'docker://debian:stretch-slim'
   entrypoint: 'entrypoint.sh'  # Replace this with the path to your script
 args:
 - '--build-arg'
