@@ -14,6 +14,5 @@ runs:
   image: 'Dockerfile'
   entrypoint: 'entrypoint.sh'  # Replace this with the path to your script
 args:
-- ${{ inputs.who-to-greet }}
 - '--build-arg'
 - 'BASE_IMAGE=ubuntu'
