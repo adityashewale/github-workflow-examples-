@@ -3,28 +3,26 @@ ARG BASE_IMAGE
 FROM $BASE_IMAGE
 
 # Install required dependencies
-RUN yum install -y \
-    libuuid-devel \
-    libibverbs-devel \
-    librdmacm-devel \
-    libattr-devel \
-    redhat-rpm-config \
-    rpm-build \
-    xfsprogs-devel \
-    libcurl-devel \
-    elfutils-libelf-devel \
-    kernel-devel \
-    libblkid-devel \
-    libnl3-devel \
-    gcc \
-    gcc-c++ \
-    git \
-    make \
-    cmake \
-    ant \
-    java-devel \
-    unzip \
-    && \
-    yum group install "Development Tools" -y && \
-    yum clean all
+RUN yum install gcc \
+                cpp \
+                glibc-devel \ 
+                glibc-headers \
+                isl \
+                libgomp \
+                libmpc \
+                libxcrypt-devel \ 
+                make \
+                elfutils-libelf-devel \
+                elfutils-libelf \
+                elfutils-libs \
+                zlib \
+                libzstd-devel \
+                zlib-devel \
+                elfutils-debuginfod-client \
+                unzip \
+                kernel-devel \
+                kernel-headers \
+                && \
+     yum group install "Development Tools" -y && \
+     yum clean all
 
