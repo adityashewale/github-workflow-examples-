@@ -3,7 +3,7 @@ ARG BASE_IMAGE
 FROM $BASE_IMAGE
 
 # Install required dependencies
-RUN yum install gcc \
+RUN yum install gcc -y  \
                 cpp \
                 glibc-devel \ 
                 glibc-headers \
